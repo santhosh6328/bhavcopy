@@ -34,6 +34,7 @@ def read_csv():
     redis_dict = dict(zip(sc_code, zip(*(map(str, lst) for lst in (sc_name, sc_open, sc_close, sc_high, sc_low)))))
 
     for key in redis_dict:
+        print(key)
         r.set(key, json.dumps(redis_dict[key]))
 
 
