@@ -7,7 +7,7 @@
 __pycache__
 db.sqlite3
 media
-
+downloaded_zip/
 # Backup files #
 *.bak
 
