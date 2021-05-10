@@ -23,20 +23,11 @@ def read_csv():
     data.drop('NO_OF_SHRS', inplace=True, axis=1)
     data.drop('NET_TURNOV', inplace=True, axis=1)
     data.drop('TDCLOINDI', inplace=True, axis=1)
-    sc_code = data['SC_CODE'].tolist()
 
-    sc_name = data['SC_NAME'].tolist()
-    sc_high = data['HIGH'].tolist()
-    sc_low = data['LOW'].tolist()
-    sc_open = data['OPEN'].tolist()
-    sc_close = data['CLOSE'].tolist()
-
-    redis_dict = dict(zip(sc_code, zip(*(map(str, lst) for lst in (sc_name, sc_open, sc_close, sc_high, sc_low)))))
-
-    for key in redis_dict:
-        print(key)
-        r.set(key, json.dumps(redis_dict[key]))
-
+    #convert columns to dict and push to redis
+    sc_list = data.to_dict()
+    for key in sc_list:
+        r.set(key, json.dumps(sc_list[key]))
 
 unzip()
 read_csv()
