@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+    <meta charset="utf-8">
+    <title>Cryptocurrency Pricing Application</title>
+</head>
+
+<body>
+<div id="app">
+  {{ info }}
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.11/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    url = 'http://127.0.0.1:8000/api/'
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                info: null
+            }
+        },
+        mounted() {
+            axios
+                .get(url)
+                .then(response => (this.info = response))
+        }
+    })
+</script>
+
+</body>
+</html>
